@@ -32,3 +32,7 @@ func TestCatchPanic_no_error(t *testing.T) {
 	}()
 	defer CatchPanic(&err)
 }
+
+func Test_ok_funcs(t *testing.T) {
+	OpenFile("unit_test.go").Close()
+}

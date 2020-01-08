@@ -1,6 +1,8 @@
 package must
 
-import "fmt"
+import (
+	"os"
+)
 
 // CatchPanic sets err if a panic is recovered
 func CatchPanic(err *error) {
@@ -8,8 +10,15 @@ func CatchPanic(err *error) {
 	switch e := e.(type) {
 	case nil:
 	case error:
-		err = &e
-	default:
-		*err = fmt.Errorf("%v", e)
+		*err = e
 	}
+}
+
+// OpenFile opens filename or panics
+func OpenFile(filename string) *os.File {
+	fh, err := os.Open(filename)
+	if err != nil {
+		panic(err)
+	}
+	return fh
 }
