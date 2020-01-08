@@ -35,4 +35,5 @@ func TestCatchPanic_no_error(t *testing.T) {
 
 func Test_ok_funcs(t *testing.T) {
 	OpenFile("unit_test.go").Close()
+	NewRequest("GET", "/", nil)
 }

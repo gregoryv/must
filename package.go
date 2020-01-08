@@ -1,6 +1,8 @@
 package must
 
 import (
+	"io"
+	"net/http"
 	"os"
 )
 
@@ -21,4 +23,12 @@ func OpenFile(filename string) *os.File {
 		panic(err)
 	}
 	return fh
+}
+
+func NewRequest(method, path string, body io.Reader) *http.Request {
+	r, err := http.NewRequest(method, path, body)
+	if err != nil {
+		panic(err)
+	}
+	return r
 }
